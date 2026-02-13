@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing Page</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    /* Header */
+    header {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    nav a {
+      margin-left: 28px;
+      text-decoration: none;
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 90px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero h2 {
+      font-size: 52px;
+      line-height: 1.1;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .hero p {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #9ca3af;
+      max-width: 500px;
+    }
+
+    .hero button {
+      margin-top: 35px;
+      padding: 14px 32px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: none;
+      background: #6366f1;
+      color: #ffffff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Card with animated photo */
+    .photo-card {
+      background: #0b1220;
+      border-radius: 26px;
+      padding: 25px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photo-card img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 18px;
+      object-fit: cover;
+    }
+
+    /* Features */
+    .features {
+      max-width: 1200px;
+      margin: auto;
+      padding: 80px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 35px;
+    }
+
+    .feature-box {
+      background: #0b1220;
+      padding: 30px;
+      border-radius: 18px;
+      border: 1px solid #1f2937;
+    }
+
+    .feature-box h3 {
+      color: #ffffff;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .feature-box p {
+      color: #9ca3af;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #1f2937;
+      padding: 30px 20px;
+      text-align: center;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h2 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Landing Page</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <h2>Modern Design<br>That Moves</h2>
+      <p>
+        Create engaging web experiences using clean layouts,
+        smooth visuals, and simple interactions.
+      </p>
+      <button>Get Started</button>
+    </div>
+
+    <!-- Animated Guy -->
+    <div class="photo-card">
+      <img 
+        src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif"
+        alt="Animated developer working">
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature-box">
+      <h3>Clean Layouts</h3>
+      <p>Organized sections that improve clarity and readability.</p>
+    </div>
+
+    <div class="feature-box">
+      <h3>Engaging Visuals</h3>
+      <p>Motion and visuals that enhance the experience.</p>
+    </div>
+
+    <div class="feature-box">
+      <h3>Responsive Design</h3>
+      <p>Looks great on desktop, tablet, and mobile screens.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Talha Ansari. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
