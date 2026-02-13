@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .calculator {
+    background: #020617;
+    padding: 20px;
+    border-radius: 18px;
+    width: 360px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+  }
+
+  .display {
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+    padding: 10px;
+    text-align: right;
+    border-radius: 10px;
+    border: none;
+    background: #111827;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  button {
+    height: 55px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #1f2933;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #374151;
+  }
+
+  .operator { background: #6366f1; }
+  .operator:hover { background: #4f46e5; }
+
+  .equal {
+    background: #22c55e;
+    grid-column: span 2;
+  }
+
+  .equal:hover { background: #16a34a; }
+
+  .clear {
+    background: #ef4444;
+    grid-column: span 2;
+  }
+
+  .clear:hover { background: #dc2626; }
+
+  .function {
+    background: #0ea5e9;
+  }
+
+  .function:hover {
+    background: #0284c7;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+  <input type="text" id="display" class="display" disabled>
+
+  <div class="buttons">
+    <button class="clear">C</button>
+    <button class="function">⌫</button>
+    <button class="operator">/</button>
+    <button class="operator">*</button>
+
+    <button class="function">sin</button>
+    <button class="function">cos</button>
+    <button class="function">tan</button>
+    <button class="operator">-</button>
+
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+    <button class="operator">+</button>
+
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <button class="function">√</button>
+
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button class="function">x²</button>
+
+    <button>0</button>
+    <button>.</button>
+    <button class="equal">=</button>
+  </div>
+</div>
+
+<script>
+  const display = document.getElementById("display");
+  const buttons = document.querySelectorAll("button");
+
+  let current = "";
+  let operator = "";
+  let firstValue = null;
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => handleInput(btn.textContent));
+  });
+
+  document.addEventListener("keydown", e => {
+    if ("0123456789.+-*/".includes(e.key)) {
+      handleInput(e.key);
+    }
+    if (e.key === "Enter") handleInput("=");
+    if (e.key === "Backspace") handleInput("⌫");
+    if (e.key === "Escape") handleInput("C");
+  });
+
+  function handleInput(value) {
+
+    if (!isNaN(value) || value === ".") {
+      current += value;
+      display.value = current;
+    }
+
+    else if ("+-*/".includes(value)) {
+      firstValue = parseFloat(current);
+      operator = value;
+      current = "";
+    }
+
+    else if (value === "=") {
+      if (firstValue !== null && current !== "") {
+        const secondValue = parseFloat(current);
+        display.value = calculate(firstValue, secondValue, operator);
+        current = display.value;
+        firstValue = null;
+      }
+    }
+
+    else if (value === "C") {
+      current = "";
+      operator = "";
+      firstValue = null;
+      display.value = "";
+    }
+
+    else if (value === "⌫") {
+      current = current.slice(0, -1);
+      display.value = current;
+    }
+
+    else if (value === "√") {
+      current = Math.sqrt(parseFloat(current)).toString();
+      display.value = current;
+    }
+
+    else if (value === "x²") {
+      current = Math.pow(parseFloat(current), 2).toString();
+      display.value = current;
+    }
+
+    else if (value === "sin") {
+      current = Math.sin(toRad(current)).toString();
+      display.value = current;
+    }
+
+    else if (value === "cos") {
+      current = Math.cos(toRad(current)).toString();
+      display.value = current;
+    }
+
+    else if (value === "tan") {
+      current = Math.tan(toRad(current)).toString();
+      display.value = current;
+    }
+  }
+
+  function calculate(a, b, op) {
+    if (op === "+") return a + b;
+    if (op === "-") return a - b;
+    if (op === "*") return a * b;
+    if (op === "/") return b !== 0 ? a / b : "Error";
+  }
+
+  function toRad(value) {
+    return parseFloat(value) * (Math.PI / 180);
+  }
+</script>
+
+</body>
+</html>
